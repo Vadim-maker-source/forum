@@ -55,8 +55,11 @@ export async function followUser(followerId: number, followingId: number) {
       include: { follower: true },
     });
   
-    // вернем именно User[]
-    return subs.map((s) => s.follower);
+    // Transform the data to match User type
+    return subs.map((s) => ({
+      ...s.follower,
+      createdAt: s.follower.createdAt || undefined // Convert null to undefined
+    }));
   }
   
   // Получить всех, на кого подписан пользователь
