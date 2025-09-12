@@ -17,8 +17,13 @@ const Followers = () => {
 
   useEffect(() => {
     ;(async () => {
-      const users = await getFollowers2(userId)
-      setFollowers(users)
+      try {
+        const users = await getFollowers2(userId)
+        setFollowers(users)
+      } catch (error) {
+        console.error('Error fetching followers:', error)
+        setFollowers([])
+      }
     })()
   }, [userId])
 
