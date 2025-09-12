@@ -42,7 +42,7 @@ export async function getCurrentUser(): Promise<User | null> {
   return user;
 }
 
-export async function getUserById(id: number) {
+export async function getUserById(id: number): Promise<User | null> {
   if (!id) return null;
   return prisma.user.findUnique({
     where: { id },

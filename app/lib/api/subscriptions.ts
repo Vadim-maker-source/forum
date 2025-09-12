@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "../prisma";
+import { User } from "../types";
 
 export async function followUser(followerId: number, followingId: number) {
     if (followerId === followingId) throw new Error("Нельзя подписаться на себя");
@@ -49,16 +50,14 @@ export async function followUser(followerId: number, followingId: number) {
     });
   }
   
-  export async function getFollowers2(userId: number) {
+  export async function getFollowers2(userId: number): Promise<User[]> {
     const subs = await prisma.subscription.findMany({
       where: { followingId: userId },
       include: { follower: true },
     });
   
-    // Transform the data to match User type
     return subs.map((s) => ({
       ...s.follower,
-      createdAt: s.follower.createdAt || undefined // Convert null to undefined
     }));
   }
   
