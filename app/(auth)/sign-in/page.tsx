@@ -57,12 +57,12 @@ export default function SignInPage() {
           <div className="h-[1px] w-[80%] bg-gray-300 flex items-center justify-center"><div className="mb-1 bg-white w-10 h-3 text-center flex items-center justify-center content-center"><span className="text-gray-500">или</span></div></div>
         </div>
 
-        <button
+        {/* <button
           onClick={() => signIn("google", { callbackUrl: "/" })}
           className={`flex items-center gap-3 justify-center w-full border-orange-400 bg-orange-400 p-2 border hover:bg-orange-100 text-white rounded-lg duration-300 cursor-pointer hover:text-orange-500`}
         >
         <Image src="/icons/google.svg" alt="Google" width={21} height={21} /> Войти через Google
-        </button>
+        </button> */}
 
         {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
 

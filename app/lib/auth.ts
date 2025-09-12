@@ -39,49 +39,49 @@ export const authOptions: AuthOptions = {
         };
       },
     }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code"
-        }
-      }
-    })
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID!,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    //   authorization: {
+    //     params: {
+    //       prompt: "consent",
+    //       access_type: "offline",
+    //       response_type: "code"
+    //     }
+    //   }
+    // })
   ],
   pages: {
     signIn: "/sign-in",
     error: "/sign-in",
   },
   callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account?.provider === "google") {
-        try {
-          // Проверяем, существует ли пользователь
-          const existingUser = await prisma.user.findUnique({
-            where: { email: profile?.email! },
-          });
+    // async signIn({ user, account, profile }) {
+    //   if (account?.provider === "google") {
+    //     try {
+    //       // Проверяем, существует ли пользователь
+    //       const existingUser = await prisma.user.findUnique({
+    //         where: { email: profile?.email! },
+    //       });
 
-          if (!existingUser) {
-            // Создаем нового пользователя
-            await prisma.user.create({
-              data: {
-                name: profile?.name || profile?.email?.split("@")[0] || "User",
-                email: profile?.email!,
-                // Google не предоставляет номер телефона
-              },
-            });
-          }
-          return true;
-        } catch (error) {
-          console.error("Google signIn error:", error);
-          return false;
-        }
-      }
-      return true;
-    },
+    //       if (!existingUser) {
+    //         // Создаем нового пользователя
+    //         await prisma.user.create({
+    //           data: {
+    //             name: profile?.name || profile?.email?.split("@")[0] || "User",
+    //             email: profile?.email!,
+    //             // Google не предоставляет номер телефона
+    //           },
+    //         });
+    //       }
+    //       return true;
+    //     } catch (error) {
+    //       console.error("Google signIn error:", error);
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // },
 
     async jwt({ token, user }) {
       if (user) {
