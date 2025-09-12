@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PostType {
+  TEXT
+  MEDIA
+  POLL
+}
+
+model User {
+  id         Int           @id @default(autoincrement())
+  name       String
+  email      String        @unique
+  password   String?
+  number     String?
+  bio        String?
+  avatar     String?
+  posts      Post[]
+  reactions  Reaction[]
+  Comment    Comment[]
+  View       View[]        @relation("UserViews")
+  Views      View[]        @relation("PostViewsUser")
+  createdAt  DateTime?     @default(now())
+
+  followers  Subscription[] @relation("FollowingSubscriptions") // кто подписан на меня
+  following  Subscription[] @relation("FollowerSubscriptions") // на кого я подписан
+
+  PollVote PollVote[]
+}
+
+model Subscription {
+  id          Int      @id @default(autoincrement())
+  followerId  Int
+  followingId Int
+  createdAt   DateTime @default(now())
+
+  follower    User @relation("FollowerSubscriptions", fields: [followerId], references: [id])
+  following   User @relation("FollowingSubscriptions", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
+}
+
+model Post {
+  id          Int          @id @default(autoincrement())
+  userId      Int
+  user        User         @relation(fields: [userId], references: [id])
+  type        PostType     @default(TEXT)
+  text        String?
+  postTheme   String?
+  header      String?
+  medias      String[]     @default([])
+  pollOptions PollOption[]
+  reactions   Reaction[]
+  createdAt   DateTime     @default(now())
+
+  @@index([userId])
+  Comment Comment[]
+}
+
+model PollOption {
+  id      Int   @id @default(autoincrement())
+  text    String
+  votes   PollVote[]
+  postId  Int
+  post    Post  @relation(fields: [postId], references: [id])
+
+  @@index([postId])
+}
+
+model PollVote {
+  id       Int        @id @default(autoincrement())
+  optionId Int
+  option   PollOption @relation(fields: [optionId], references: [id])
+  userId   Int
+  user     User       @relation(fields: [userId], references: [id])
+
+  @@unique([optionId, userId]) // 1 пользователь = 1 голос за опцию
+}
+
+model Reaction {
+  id     Int    @id @default(autoincrement())
+  emoji  String
+  postId Int
+  post   Post   @relation(fields: [postId], references: [id])
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+
+  // ВАЖНО: только одна реакция пользователя на пост
+  @@unique([postId, userId])
+  @@index([postId, emoji])
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  postId    Int
+  userId    Int
+  text      String
+  media     String?
+  createdAt DateTime  @default(now())
+
+  post      Post      @relation(fields: [postId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
+
+  // Для вложенных комментариев
+  parentId  Int?      
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+}
+
+model View {
+  id            Int   @id @default(autoincrement())
+  viewerId      Int
+  posterUserId  Int
+
+  viewer  User @relation("UserViews", fields: [viewerId], references: [id])
+  poster  User @relation("PostViewsUser", fields: [posterUserId], references: [id])
+
+  @@index([viewerId])
+  @@index([posterUserId])
+}
