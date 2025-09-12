@@ -67,7 +67,7 @@ export default function CreatePostPage() {
       />
 
       <Select value={category} onValueChange={setCategory}>
-        <SelectTrigger className="w-full mb-3">
+        <SelectTrigger className="w-full mb-3 px-4 py-4 text-md">
           <SelectValue placeholder="Выберите тему поста" />
         </SelectTrigger>
         <SelectContent>

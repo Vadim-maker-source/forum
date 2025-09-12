@@ -140,3 +140,7 @@
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+.bg-image{
+  background-image: url("/public/images/food-w.jpg");
+}

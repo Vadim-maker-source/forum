@@ -13,7 +13,7 @@ import { Themes } from "@/app/lib/constants";
 export default function CreateOprosPage() {
   const [text, setText] = useState("");
   const [header, setHeader] = useState("");
-  const [cate, setCate] = useState("");
+  const [category, setCategory] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [newOption, setNewOption] = useState("");
   const [pending, start] = useTransition();
@@ -46,7 +46,7 @@ export default function CreateOprosPage() {
           toast.error("Введите вопрос");
           return;
         }
-        await createPostAction({ type: "POLL", text, pollOptions: options, header, cate });
+        await createPostAction({ type: "POLL", text, pollOptions: options, header, cate: category });
         setText("")
         window.location.href = "/";
         toast.success("Публикация успешно создана")
@@ -57,20 +57,22 @@ export default function CreateOprosPage() {
 
   return (
     <div className="max-w-3xl w-lg mx-auto p-4">
-      <h1 className="text-xl font-bold mb-3">Создать опрос</h1>
+      <h1 className="text-2xl font-bold mb-3">Создать опрос</h1>
 
       <input type="text" placeholder="Заголовок..." value={header} onChange={(e) => setHeader(e.target.value)} className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200" />
 
-      <Select>
-  <SelectTrigger className="w-[180px]">
-    <SelectValue placeholder="Тема поста" />
-  </SelectTrigger>
-  <SelectContent>
-    {Themes.map((category) => (
-      <SelectItem value={category} onChange={() => setCate(category)}>{category}</SelectItem>
-    ))}
-  </SelectContent>
-</Select>
+      <Select value={category} onValueChange={setCategory}>
+        <SelectTrigger className="w-full mb-3 mt-3 px-4 py-4 text-md">
+          <SelectValue placeholder="Выберите тему поста" />
+        </SelectTrigger>
+        <SelectContent>
+          {Themes.map((theme) => (
+            <SelectItem key={theme} value={theme}>
+              {theme}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
       <input
         className="w-full border rounded-lg px-3 py-2 mb-6 dark:bg-gray-800 outline-0 focus:border-orange-500 duration-200"
