@@ -18,7 +18,7 @@ const Followers = () => {
   useEffect(() => {
     ;(async () => {
       const users = await getFollowers2(userId)
-      setFollowers(users as unknown as User[])
+      setFollowers(users)
     })()
   }, [userId])
 
