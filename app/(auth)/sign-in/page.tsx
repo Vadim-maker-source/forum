@@ -27,7 +27,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+    <div className="w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
       <h1 className="text-2xl font-bold mb-4">Вход</h1>
       <div className="flex flex-col gap-3">
         <input
