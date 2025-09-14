@@ -55,7 +55,7 @@ export default function CreatePostPage() {
     });
 
   return (
-    <div className="max-w-3xl w-lg mx-auto p-4">
+    <div className="max-w-md w-xs md:max-w-3xl md:w-lg mx-auto p-4">
       <h1 className="text-2xl font-bold mb-3">Создать пост</h1>
 
       <input 

@@ -56,7 +56,7 @@ export default function CreateOprosPage() {
     });
 
   return (
-    <div className="max-w-3xl w-lg mx-auto p-4">
+    <div className="max-w-md w-xs md:max-w-3xl md:w-lg mx-auto p-4">
       <h1 className="text-2xl font-bold mb-3">Создать опрос</h1>
 
       <input type="text" placeholder="Заголовок..." value={header} onChange={(e) => setHeader(e.target.value)} className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200" />
