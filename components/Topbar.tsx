@@ -83,7 +83,7 @@ export default function Topbar() {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск..."
           className={cn(
-            "border focus:border-orange-500 outline-0 rounded-lg pl-10 pr-3 py-2 md:w-80 sm:max-w-96 sm:w-52 max-w-full dark:bg-gray-800"
+            "border focus:border-orange-500 outline-0 rounded-lg pl-10 pr-3 py-2 md:w-80 sm:max-w-96 sm:w-32 max-w-full dark:bg-gray-800"
           )}
         />
 
