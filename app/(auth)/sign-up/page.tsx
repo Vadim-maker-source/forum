@@ -4,8 +4,10 @@ import { signUpAction } from "@/app/lib/api/actions";
 import { useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import ru from 'react-phone-input-2/lang/ru.json'
+import { cn } from "@/lib/utils";
 
 export default function SignUpPage() {
   const [name, setName] = useState("");
@@ -20,7 +22,6 @@ export default function SignUpPage() {
       setError(null);
       try {
         await signUpAction(name, email, number || undefined, password);
-        // После регистрации сразу логиним пользователя
         await signIn("credentials", {
           email,
           password,
@@ -33,8 +34,8 @@ export default function SignUpPage() {
     });
 
   return (
-    <div className="w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
-      <h1 className="text-2xl font-bold mb-4">Регистрация</h1>
+    <div className="w-[340px] md:w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+      <h1 className="text-2xl font-bold text-center mb-4">Регистрация</h1>
       <div className="flex flex-col gap-3">
         <input
           className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
@@ -42,16 +43,25 @@ export default function SignUpPage() {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <input
+        <PhoneInput
+        localization={ru}
+        country={"ru"}
+  value={number}
+  onChange={setNumber}
+  containerClass="focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
+  inputClass="focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
+  inputStyle={{ borderColor: "#e5e7eb", borderRadius: "0.25rem", height: 40, paddingRight: 8, textAlign: "center", paddingInline: 16, }}
+/>
+        {/* <input
           className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
-          placeholder="Телефон (необязательно)"
+          placeholder="Телефон"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
-        />
+        /> */}
         <input
           type="email"
           className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
-          placeholder="Email"
+          placeholder="Почта"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -88,9 +98,9 @@ export default function SignUpPage() {
 
         <a
           href="/sign-in"
-          className="text-blue-600 hover:underline text-sm text-center"
+          className="text-orange-500 hover:underline text-sm text-center flex items-center justify-center"
         >
-          Уже есть аккаунт? Войти
+          Уже есть аккаунт? <span className="font-bold ml-1">Войдите</span>
         </a>
       </div>
     </div>

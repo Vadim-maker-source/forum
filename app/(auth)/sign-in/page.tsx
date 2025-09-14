@@ -27,13 +27,13 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
-      <h1 className="text-2xl font-bold mb-4">Вход</h1>
+    <div className="w-[340px] md:w-sm mx-auto p-6 bg-white dark:bg-gray-800 rounded-xl shadow">
+      <h1 className="text-2xl text-center font-bold mb-4">Вход</h1>
       <div className="flex flex-col gap-3">
         <input
           type="email"
           className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
-          placeholder="Email"
+          placeholder="Почта"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -70,9 +70,9 @@ export default function SignInPage() {
 
         <a
           href="/sign-up"
-          className="text-green-600 hover:underline text-sm text-center"
+          className="text-orange-500 hover:underline text-sm text-center flex items-center justify-center"
         >
-          Нет аккаунта? Зарегистрироваться
+          Ещё нет аккаунта? <span className="font-bold ml-1">Зарегистрируйтесь</span>
         </a>
       </div>
     </div>

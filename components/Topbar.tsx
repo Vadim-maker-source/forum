@@ -10,6 +10,7 @@ import { Home, Menu, PlusSquare, Search, User2 } from "lucide-react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowRightToBracket,
   faImage,
   faRightFromBracket,
   faSquarePollHorizontal,
@@ -82,7 +83,7 @@ export default function Topbar() {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Поиск..."
           className={cn(
-            "border focus:border-orange-500 outline-0 rounded-lg pl-10 pr-3 py-2 w-80 sm:max-w-96 max-w-full dark:bg-gray-800"
+            "border focus:border-orange-500 outline-0 rounded-lg pl-10 pr-3 py-2 md:w-80 sm:max-w-96 sm:w-52 max-w-full dark:bg-gray-800"
           )}
         />
 
@@ -124,7 +125,8 @@ export default function Topbar() {
           href="/sign-up"
           className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700"
         >
-          Регистрация
+          <p className="hidden md:block">Регистрация</p>
+          <p className="block md:hidden"><FontAwesomeIcon icon={faArrowRightToBracket} /></p>
         </Link>
       ) : (
         <div className="flex items-center gap-4">

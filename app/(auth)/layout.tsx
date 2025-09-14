@@ -35,7 +35,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
         
         {/* Контент поверх затемненного фона */}
-        <div className="relative z-10 h-full w-full flex items-center">
+        <div className="relative z-10 h-full w-full flex items-center sm:p-7">
           {children}
         </div>
       </div>
