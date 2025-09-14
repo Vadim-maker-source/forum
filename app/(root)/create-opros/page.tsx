@@ -63,7 +63,7 @@ export default function CreateOprosPage() {
 
       <Select value={category} onValueChange={setCategory}>
         <SelectTrigger className="w-full mb-3 mt-3 px-4 py-4 text-md">
-          <SelectValue placeholder="Выберите тему поста" />
+          <SelectValue placeholder="Выберите тему опроса" />
         </SelectTrigger>
         <SelectContent>
           {Themes.map((theme) => (
@@ -83,7 +83,7 @@ export default function CreateOprosPage() {
 
       <Separator />
 
-      <div className="mb-3 flex gap-2 mt-6">
+      <div className="mb-3 flex gap-2 mt-6 w-full">
         <input
           className="flex-1 border outline-0 focus:border-orange-500 duration-200 rounded-lg px-3 py-2 dark:bg-gray-800"
           placeholder="Новый вариант"
