@@ -50,7 +50,7 @@ export default function SignUpPage() {
   onChange={setNumber}
   containerClass="focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
   inputClass="focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
-  inputStyle={{ borderColor: "#e5e7eb", borderRadius: "0.25rem", height: 40, paddingRight: 8, textAlign: "center", paddingInline: 16, }}
+  inputStyle={{ borderColor: "#e5e7eb", width: "100%", borderRadius: "0.25rem", height: 40, paddingRight: 8, textAlign: "center", paddingInline: 16, }}
 />
         {/* <input
           className="px-4 py-2 w-full h-10 rounded-lg border border-gray-200 focus:border-orange-500 outline-0 hover:border-gray-300 duration-200"
