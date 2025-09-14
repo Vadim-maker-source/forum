@@ -5,7 +5,7 @@ import { createPostAction } from "@/app/lib/api/posts";
 import { Separator } from "@/components/ui/separator";
 import { Loader2, X } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "sonner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Themes } from "@/app/lib/constants";
@@ -95,7 +95,8 @@ export default function CreateOprosPage() {
           onClick={addOption}
           className="px-3 py-2 bg-orange-500 border border-orange-500 text-white rounded-lg hover:bg-orange-100 hover:text-orange-500 duration-300 cursor-pointer"
         >
-          Добавить
+          <p className="hidden md:block">Добавить</p>
+          <p className="block md:hidden"><FontAwesomeIcon icon={faPlus} /></p>
         </button>
       </div>
 
