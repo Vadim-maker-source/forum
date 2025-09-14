@@ -86,7 +86,7 @@ export default function PostCard({ post, user }: { post: Post, user: User }) {
     };
 
   return (
-    <div className="border-b p-4 w-110 max-w-135 md:w-full md:max-w-xl bg-white dark:bg-gray-900 transition-colors">
+    <div className="border-b p-4 w-80 max-w-135 md:w-full md:max-w-xl bg-white dark:bg-gray-900 transition-colors">
       {/* Заголовок карточки — автор */}
       {post.user && (
         <Link href={`/profile/${user.id}`}>
@@ -100,7 +100,7 @@ export default function PostCard({ post, user }: { post: Post, user: User }) {
       {post.type === "TEXT" && (
         <div>
           <p className="text-black dark:text-gray-400 text-lg font-semibold whitespace-pre-wrap">{post.header}</p>
-          <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap ml-4">{post.text}</p>
+          <p className="text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{post.text}</p>
         </div>
       )}
 
